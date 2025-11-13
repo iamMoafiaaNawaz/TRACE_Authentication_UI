@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# vibe extensions
+.qodo
+
+.codacy
+
 # Distribution / packaging
 .Python
 build/
