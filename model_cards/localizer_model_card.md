@@ -1,0 +1,1 @@
+This file will describe localizer model details
