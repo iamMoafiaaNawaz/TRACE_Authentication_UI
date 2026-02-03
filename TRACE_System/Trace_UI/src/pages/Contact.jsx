@@ -23,22 +23,30 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-700 flex flex-col">
       
-      {/* 1. Navigation Bar */}
+      {/* 1. Navigation Bar (UPDATED - Left Button / Right Logo) */}
       <nav className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center">
+          
+          {/* A. Back Button (Ab Left Side par hai) */}
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-[#1E90FF] transition-colors mr-6"
+          >
+            <ArrowLeft size={20} /> Back to Home
+          </Link>
+
+          {/* B. Vertical Divider */}
+          <div className="h-8 w-px bg-slate-200 mr-6 hidden sm:block"></div>
+
+          {/* C. Logo Section (Right Side, Not Clickable) */}
+          <div className="flex items-center gap-3 select-none">
             <img src={traceLogo} alt="TRACE" className="h-10 w-auto object-contain" />
             <div className="flex flex-col">
               <span className="text-lg font-bold text-slate-800 leading-none">TRACE</span>
               <span className="text-[10px] font-semibold text-[#1E90FF] uppercase tracking-wide">Support</span>
             </div>
           </div>
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-[#1E90FF] transition-colors"
-          >
-            <ArrowLeft size={18} /> Back to Home
-          </Link>
+
         </div>
       </nav>
 
@@ -59,21 +67,21 @@ const Contact = () => {
               </p>
 
               <div className="space-y-6">
-                {/* 1. Updated Email */}
+                {/* 1. Email */}
                 <ContactItem 
                   icon={<Mail className="text-blue-200" />}
                   label="Support Email"
-                  value="fypbsai@gmail.com"
+                  value="tracesystem.official@gmail.com"
                 />
                 
-                {/* 2. Generalized Location (Web Platform) */}
+                {/* 2. Location */}
                 <ContactItem 
                   icon={<Globe className="text-blue-200" />}
                   label="Platform Access"
                   value="Global / Web-Based"
                 />
                 
-                {/* 3. Generalized Response Time */}
+                {/* 3. Response Time */}
                 <ContactItem 
                   icon={<MessageSquare className="text-blue-200" />}
                   label="Response Time"

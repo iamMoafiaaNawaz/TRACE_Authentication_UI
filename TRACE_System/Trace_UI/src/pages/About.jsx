@@ -7,26 +7,34 @@ const About = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-700">
       
-      {/* 1. Navigation Bar */}
+      {/* 1. Navigation Bar (UPDATED) */}
       <nav className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center">
+          
+          {/* A. Back Button (Ab Left Side par hai) */}
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-[#1E90FF] transition-colors mr-6"
+          >
+            <ArrowLeft size={20} /> Back to Home
+          </Link>
+
+          {/* B. Vertical Divider (Design ke liye) */}
+          <div className="h-8 w-px bg-slate-200 mr-6 hidden sm:block"></div>
+
+          {/* C. Logo Section (Right of button, NOT Clickable) */}
+          <div className="flex items-center gap-3 select-none"> {/* select-none prevents highlighting */}
             <img src={traceLogo} alt="TRACE" className="h-10 w-auto object-contain" />
             <div className="flex flex-col">
               <span className="text-lg font-bold text-slate-800 leading-none">TRACE</span>
               <span className="text-[10px] font-semibold text-[#1E90FF] uppercase tracking-wide">About System</span>
             </div>
           </div>
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-[#1E90FF] transition-colors"
-          >
-            <ArrowLeft size={18} /> Back to Home
-          </Link>
+
         </div>
       </nav>
 
-      {/* 2. Hero Section: Definition (CORRECTED HERE) */}
+      {/* 2. Hero Section: Definition */}
       <section className="bg-white py-16 px-6 border-b border-slate-100">
         <div className="max-w-5xl mx-auto text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-[#1E90FF] text-xs font-bold tracking-widest uppercase mb-4 border border-blue-100">
@@ -62,7 +70,7 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Feature 1: Preprocessing (Links to 'Artifact Cleanup') */}
+            {/* Feature 1: Preprocessing */}
             <FeatureCard 
               icon={<Sparkles className="text-yellow-500" />}
               title="1. Intelligent Preprocessing"
@@ -101,7 +109,7 @@ const About = () => {
               ]}
             />
 
-            {/* Feature 4: Explainability (Links to 'Explainability') */}
+            {/* Feature 4: Explainability */}
             <FeatureCard 
               icon={<Eye className="text-purple-500" />}
               title="4. Explainable AI (XAI)"

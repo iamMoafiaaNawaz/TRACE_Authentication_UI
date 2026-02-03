@@ -102,7 +102,7 @@ const Welcome = () => {
         </div>
 
         <p className="text-slate-400 font-medium text-[10px] md:text-xs">
-          © 2025 TRACE System. Empowering Healthcare with AI.
+          © 2026 TRACE System. Empowering Healthcare with AI.
         </p>
       </footer>
 

@@ -16,7 +16,7 @@ import Dashboard from './pages/Dashboard';
 import NewAnalysis from './pages/NewAnalysis';
 import History from './pages/History';
 import Profile from './pages/Profile';
-import Settings from './pages/Settings'; // <--- YEH IMPORT ZAROORI HAI
+import Settings from './pages/Settings'; 
 
 function App() {
   return (
@@ -31,13 +31,16 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        {/* --- ADMIN ROUTE (FIXED) --- */}
+        {/* Isay /dashboard/admin se hata kar sirf /admin kar diya taake login se match ho */}
+        <Route path="/admin" element={<AdminPanel />} />
+
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/upload" element={<NewAnalysis />} />
         <Route path="/dashboard/history" element={<History />} />
         <Route path="/dashboard/profile" element={<Profile />} />
-        <Route path="/dashboard/admin" element={<AdminPanel />} />
-        {/* --- YEH LINE ADD KARNI THI 👇 --- */}
         <Route path="/dashboard/settings" element={<Settings />} />
 
         {/* Fallback */}

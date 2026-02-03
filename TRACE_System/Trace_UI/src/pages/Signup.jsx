@@ -21,7 +21,7 @@ const Signup = () => {
     fullName: '',
     email: '',
     password: '',
-    role: 'Student',
+    role: 'Student', // Default role Student rahega
   })
 
   // Logic
@@ -122,7 +122,7 @@ const Signup = () => {
                 <select value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="w-full pl-12 pr-10 py-3.5 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E90FF] appearance-none text-slate-700 font-medium cursor-pointer">
                   <option value="Student">Medical Student</option>
                   <option value="Clinician">Clinician / Doctor</option>
-                  <option value="Admin">Administrator</option>
+                  {/* ADMIN OPTION REMOVED FOR SECURITY */}
                 </select>
               </div>
             </div>

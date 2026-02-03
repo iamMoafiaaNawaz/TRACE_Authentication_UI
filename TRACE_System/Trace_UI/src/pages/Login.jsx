@@ -33,12 +33,20 @@ const Login = () => {
       localStorage.setItem('token', response.data.token);
       
       // 2. User Info Save
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      const user = response.data.user;
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('role', user.role); // Role alag se bhi save kar lein (Optional but good)
 
       setLoading(false);
       
-      // 3. Dashboard Redirect
-      navigate('/dashboard'); 
+      // --- 3. ROLE BASED REDIRECT (Ye Naya Logic Hai) ---
+      if (user.role === 'Admin') {
+          console.log("Redirecting to Admin Panel...");
+          navigate('/admin'); // Admin -> Admin Panel
+      } else {
+          console.log("Redirecting to User Dashboard...");
+          navigate('/dashboard'); // Student/Doctor -> Dashboard
+      }
 
     } catch (err) {
       console.error("Login Failed:", err);
@@ -123,7 +131,6 @@ const Login = () => {
               Remember me
             </label>
             
-            {/* --- FORCE NAVIGATION FIX (Clickable Span) --- */}
             <span 
               onClick={() => navigate('/forgot-password')} 
               className="text-[#1E90FF] font-semibold hover:underline cursor-pointer"

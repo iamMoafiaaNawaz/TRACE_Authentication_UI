@@ -1,13 +1,13 @@
 import os
 import random
 import smtplib
+import datetime
+import bcrypt
+import jwt
 from email.mime.text import MIMEText
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
-import bcrypt
-import jwt
-import datetime
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
 from email_validator import validate_email, EmailNotValidError 
@@ -21,16 +21,15 @@ CORS(app)
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/trace_db")
 SECRET_KEY = os.getenv("SECRET_KEY", "secret")
 
-# ======================================================
-# 👇 APKI EMAIL DETAILS (YAHAN DALEIN)
-# ======================================================
-SMTP_EMAIL = "mafianawaz60@gmail.com"
-SMTP_PASSWORD = "sies gimw vwhz yisr" 
-# ======================================================
+SMTP_EMAIL = "tracesystem.official@gmail.com"
+SMTP_PASSWORD = "phzg cnkc iumf ptbk" 
 
 client = MongoClient(MONGO_URI)
 db = client.get_database()
-users_collection = db["users"]
+
+# --- SEPARATE COLLECTIONS ---
+users_collection = db["users"]   # For Students, Doctors, Clinicians
+admins_collection = db["admins"] # Only for Admins
 pending_collection = db["pending_users"] 
 reset_collection = db["password_resets"] 
 
@@ -49,20 +48,20 @@ def send_email(to_email, subject, body):
         server.quit()
         return True
     except Exception as e:
-        print(f"❌ Email Error: {e}")
+        print(f"Email Error: {e}")
         return False
 
-# --- 1. SIGNUP STEP 1 ---
+# --- 1. SIGNUP (Only for Users) ---
 @app.route('/api/auth/signup', methods=['POST'])
 def signup_step1():
     try:
         data = request.json
         email = data.get('email', '').lower().strip()
         password = data.get('password')
-        fullName = data.get('fullName')
-        role = data.get('role', 'Student')
+        full_name = data.get('fullName')
+        requested_role = data.get('role', 'Student')
 
-        if not email or not password or not fullName:
+        if not email or not password or not full_name:
             return jsonify({"error": "Missing fields"}), 400
 
         try:
@@ -71,26 +70,33 @@ def signup_step1():
         except EmailNotValidError as e:
             return jsonify({"error": f"Invalid Email: {str(e)}"}), 400
 
-        if users_collection.find_one({"email": email}):
+        # Check in BOTH collections to ensure email is unique across system
+        if users_collection.find_one({"email": email}) or admins_collection.find_one({"email": email}):
             return jsonify({"error": "Email already registered"}), 400
         
+        # Security: Force users to be Student or Clinician/Doctor only
+        allowed_roles = ['Student', 'Clinician', 'Doctor']
+        if requested_role not in allowed_roles:
+            role = 'Student'
+        else:
+            role = requested_role
+
         otp = str(random.randint(100000, 999999))
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
         pending_user = {
-            "fullName": fullName,
+            "fullName": full_name,
             "email": email,
             "password": hashed_password,
             "role": role,
             "otp": otp,
-            "created_at": datetime.datetime.utcnow() # Time note kar liya
+            "created_at": datetime.datetime.utcnow()
         }
         
         pending_collection.delete_one({"email": email}) 
         pending_collection.insert_one(pending_user)
 
-        # CHANGE: Text updated to 5 Minutes
-        if send_email(email, "TRACE - Verify Account", f"Your OTP is: {otp}\n\nThis code expires in 5 minutes."):
+        if send_email(email, "TRACE - Verify Account", f"Your OTP is: {otp}\n\nExpires in 5 minutes."):
             return jsonify({"message": "OTP sent successfully"}), 200
         else:
             return jsonify({"error": "Failed to send email"}), 500
@@ -98,7 +104,7 @@ def signup_step1():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- 2. VERIFY OTP (Signup) ---
+# --- 2. VERIFY OTP ---
 @app.route('/api/auth/verify-otp', methods=['POST'])
 def verify_otp():
     try:
@@ -111,16 +117,10 @@ def verify_otp():
         if not pending_user:
             return jsonify({"error": "User not found or Session Expired"}), 400
 
-        # === 🕒 LOGIC CHANGE: 5 MINUTE EXPIRATION CHECK ===
-        # Current Time - Created Time
         time_diff = datetime.datetime.utcnow() - pending_user['created_at']
-        
-        # Agar farq 5 minute (300 seconds) se zyada hai
         if time_diff.total_seconds() > 300: 
-            # Record delete karo aur error do
             pending_collection.delete_one({"email": email})
-            return jsonify({"error": "OTP Expired (5 mins passed). Signup again."}), 400
-        # ==================================================
+            return jsonify({"error": "OTP Expired. Signup again."}), 400
 
         if pending_user['otp'] != otp:
             return jsonify({"error": "Invalid OTP"}), 400
@@ -133,6 +133,7 @@ def verify_otp():
             "created_at": datetime.datetime.utcnow()
         }
 
+        # Insert into USERS collection
         users_collection.insert_one(new_user)
         pending_collection.delete_one({"email": email}) 
 
@@ -141,22 +142,31 @@ def verify_otp():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- 3. LOGIN ---
+# --- 3. LOGIN (Checks both Users and Admins) ---
 @app.route('/api/auth/login', methods=['POST'])
 def login():
     try:
         data = request.json
         email = data.get('email', '').lower().strip()
+        password = data.get('password')
         
+        # First, try to find in USERS collection
         user = users_collection.find_one({"email": email})
+        collection_type = "user"
+
+        # If not found in Users, try ADMINS collection
+        if not user:
+            user = admins_collection.find_one({"email": email})
+            collection_type = "admin"
         
         if not user:
             return jsonify({"error": "User not found"}), 404
 
-        if bcrypt.checkpw(data.get('password').encode('utf-8'), user['password']):
+        if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             token = jwt.encode({
                 'user_id': str(user['_id']),
                 'role': user['role'],
+                'type': collection_type, # Helps identify source
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
             }, SECRET_KEY, algorithm="HS256")
 
@@ -170,16 +180,20 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- 4. FORGOT PASSWORD (OTP SEND) ---
+# --- 4. FORGOT PASSWORD ---
 @app.route('/api/auth/forgot-password', methods=['POST'])
 def forgot_password():
     try:
         data = request.json
         email = data.get('email', '').lower().strip()
 
+        # Check both collections
         user = users_collection.find_one({"email": email})
         if not user:
-            return jsonify({"error": "No account found with this email"}), 404
+            user = admins_collection.find_one({"email": email})
+
+        if not user:
+            return jsonify({"error": "No account found"}), 404
 
         otp = str(random.randint(100000, 999999))
         
@@ -187,19 +201,18 @@ def forgot_password():
         reset_collection.insert_one({
             "email": email,
             "otp": otp,
-            "created_at": datetime.datetime.utcnow() # Time save kiya
+            "created_at": datetime.datetime.utcnow()
         })
 
-        # CHANGE: Text updated to 5 Minutes
-        if send_email(email, "TRACE - Reset Password", f"Your Password Reset Code is: {otp}\n\nExpires in 5 minutes."):
-            return jsonify({"message": "Reset code sent to email"}), 200
+        if send_email(email, "TRACE - Reset Password", f"Reset Code: {otp}\n\nExpires in 5 minutes."):
+            return jsonify({"message": "Code sent"}), 200
         else:
-            return jsonify({"error": "Email failed to send"}), 500
+            return jsonify({"error": "Email failed"}), 500
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- 5. RESET PASSWORD (VERIFY & CHANGE) ---
+# --- 5. RESET PASSWORD ---
 @app.route('/api/auth/reset-password', methods=['POST'])
 def reset_password():
     try:
@@ -211,29 +224,25 @@ def reset_password():
         record = reset_collection.find_one({"email": email})
 
         if not record:
-            return jsonify({"error": "Request expired"}), 400
-
-        # === 🕒 LOGIC CHANGE: 5 MINUTE EXPIRATION CHECK ===
-        time_diff = datetime.datetime.utcnow() - record['created_at']
+            return jsonify({"error": "Expired"}), 400
         
-        if time_diff.total_seconds() > 300: # 300 seconds = 5 Minutes
+        if (datetime.datetime.utcnow() - record['created_at']).total_seconds() > 300:
             reset_collection.delete_one({"email": email})
-            return jsonify({"error": "OTP Expired. Please request a new code."}), 400
-        # ==================================================
+            return jsonify({"error": "Expired"}), 400
 
         if record['otp'] != otp:
             return jsonify({"error": "Invalid Code"}), 400
 
         hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
 
-        users_collection.update_one(
-            {"email": email},
-            {"$set": {"password": hashed_password}}
-        )
+        # Update in Users OR Admins
+        updated = users_collection.update_one({"email": email}, {"$set": {"password": hashed_password}})
+        if updated.matched_count == 0:
+            admins_collection.update_one({"email": email}, {"$set": {"password": hashed_password}})
 
         reset_collection.delete_one({"email": email})
 
-        return jsonify({"message": "Password changed successfully. Please Login."}), 200
+        return jsonify({"message": "Password changed."}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -242,6 +251,7 @@ def reset_password():
 @app.route('/api/admin/users', methods=['GET'])
 def get_all_users():
     try:
+        # Only return Normal Users (Students/Clinicians) to the list
         users = list(users_collection.find({}, {"password": 0}))
         for user in users: user['_id'] = str(user['_id'])
         return jsonify(users), 200
@@ -250,6 +260,7 @@ def get_all_users():
 @app.route('/api/admin/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
     try:
+        # Only allows deleting Normal Users
         users_collection.delete_one({"_id": ObjectId(user_id)})
         return jsonify({"message": "Deleted"}), 200
     except: return jsonify({"error": "Failed"}), 500
@@ -257,11 +268,19 @@ def delete_user(user_id):
 @app.route('/api/admin/analytics', methods=['GET'])
 def get_analytics():
     try:
-        total = users_collection.count_documents({})
+        total_users = users_collection.count_documents({})
         students = users_collection.count_documents({"role": "Student"})
         clinicians = users_collection.count_documents({"role": {"$in": ["Doctor", "Clinician"]}}) 
-        admins = users_collection.count_documents({"role": "Admin"})
-        return jsonify({"totalUsers": total, "students": students, "clinicians": clinicians, "admins": admins}), 200
+        
+        # Count Admins from the new separate table
+        admins = admins_collection.count_documents({})
+        
+        return jsonify({
+            "totalUsers": total_users, 
+            "students": students, 
+            "clinicians": clinicians, 
+            "admins": admins
+        }), 200
     except: return jsonify({}), 500
 
 if __name__ == '__main__':
