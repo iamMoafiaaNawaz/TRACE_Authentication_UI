@@ -30,8 +30,8 @@ CORS(app)
 # Configuration
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/trace_db")
 SECRET_KEY = os.getenv("SECRET_KEY", "secret")
-SMTP_EMAIL = "tracesystem.official@gmail.com"
-SMTP_PASSWORD = "phzg cnkc iumf ptbk"
+SMTP_EMAIL = os.getenv("SMTP_EMAIL", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 
 client = MongoClient(MONGO_URI)
 db = client.get_database()

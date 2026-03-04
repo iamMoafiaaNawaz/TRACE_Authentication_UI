@@ -46,8 +46,10 @@ Create/update `TRACE_Backend/.env`:
 
 ```env
 MONGO_URI=mongodb://localhost:27017/trace_db
-SECRET_KEY=trace_secret_key_12345
+SECRET_KEY=your_strong_secret_key_here
 APP_TIMEZONE=Asia/Karachi
+SMTP_EMAIL=your_email@example.com
+SMTP_PASSWORD=your_app_password_here
 ```
 
 ## Hair Model Notes
@@ -86,4 +88,3 @@ Repository ignores sensitive/heavy content:
 Use two terminals:
 - Terminal 1: backend (`venv311`, `python app.py`)
 - Terminal 2: frontend (`npm run dev`)
-
