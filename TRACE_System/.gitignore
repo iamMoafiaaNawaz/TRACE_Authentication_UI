@@ -1,15 +1,31 @@
-# Dependency folders
+# --- Dependencies & Python Junk ---
 node_modules/
 venv/
+venv311/
+venv*/
+.venv/
+env/
 __pycache__/
+*.pyc
 
-# Environment Variables (Secrets)
+# --- Environment Variables (Secrets) ---
 .env
 
-# System files
+# --- AI Model (VERY IMPORTANT) ---
+# Ye files GitHub par nahi jayengi kyunki ye heavy hain
+*.pth
+*.h5
+*.keras
+model/
+
+# --- User Data ---
+# User ki upload ki hui images code ka hissa nahi hain
+uploads/
+
+# --- System files ---
 .DS_Store
 Thumbs.db
 
-# Build outputs
+# --- Build outputs ---
 dist/
 build/

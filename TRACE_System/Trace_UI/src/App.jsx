@@ -32,9 +32,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* --- ADMIN ROUTE (FIXED) --- */}
-        {/* Isay /dashboard/admin se hata kar sirf /admin kar diya taake login se match ho */}
+        {/* Admin Routes (support both old and new paths) */}
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/dashboard/admin" element={<Navigate to="/admin" replace />} />
 
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<Dashboard />} />

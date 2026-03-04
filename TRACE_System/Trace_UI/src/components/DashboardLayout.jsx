@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   UploadCloud, 
@@ -18,7 +18,6 @@ const DashboardLayout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
   const [user, setUser] = useState({ fullName: 'User', role: 'Guest' });
@@ -111,10 +110,10 @@ const DashboardLayout = ({ children }) => {
               <div className="space-y-1">
                 {/* SINGLE LINK: Admin Panel */}
                 <Link
-                  to="/dashboard/admin"
+                  to="/admin"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm font-medium ${
-                    location.pathname === '/dashboard/admin'
+                    location.pathname === '/admin' || location.pathname === '/dashboard/admin'
                       ? 'bg-blue-600 text-white shadow-md shadow-blue-200' // Alag color taaki highlight ho
                       : 'text-slate-600 hover:bg-slate-100 hover:text-blue-600'
                   }`}
