@@ -1,0 +1,80 @@
+# TRACE — Transformative Research in Automated Clinical Evaluation
+# pip install -r requirements.txt
+#
+# Install order matters for CUDA-enabled environments:
+#   1. Install PyTorch with CUDA first (see https://pytorch.org/get-started)
+#   2. Then: pip install -r requirements.txt
+
+# ==============================================================================
+# CORE — Deep Learning
+# ==============================================================================
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
+# ==============================================================================
+# LOCALISATION — YOLO
+# ==============================================================================
+ultralytics>=8.0.0             # YOLOv8 / v9 / v10 / v11
+
+# ==============================================================================
+# DATA & COMPUTE
+# ==============================================================================
+numpy>=1.24.0
+Pillow>=10.0.0
+scikit-learn>=1.3.0
+scipy>=1.11.0                  # audit Method 2: binary_fill_holes, label
+
+# ==============================================================================
+# VISUALISATION
+# ==============================================================================
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tqdm>=4.65.0
+
+# ==============================================================================
+# SERIALISATION
+# ==============================================================================
+h5py>=3.9.0
+joblib>=1.3.0
+pyyaml>=6.0
+onnx>=1.14.0
+onnxruntime>=1.16.0
+
+# ==============================================================================
+# AUDIT — Data Integrity (Methods 2 & 3)
+# ==============================================================================
+imagededup>=0.3.2              # pHash near-duplicate detection
+umap-learn>=0.5.4              # UMAP 2D scatter plot (optional)
+
+# ==============================================================================
+# MEDGEMMA — Clinical Report Generation
+# ==============================================================================
+transformers>=4.40.0
+accelerate>=0.27.0
+bitsandbytes>=0.41.0           # 4-bit NF4 quantisation (~5GB VRAM)
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# ==============================================================================
+# API SERVER
+# ==============================================================================
+flask>=3.0.0                   # MedGemma REST API (stdlib fallback available)
+
+# ==============================================================================
+# EXPERIMENT TRACKING
+# ==============================================================================
+mlflow>=2.8.0
+
+# ==============================================================================
+# DEVELOPMENT & TESTING
+# ==============================================================================
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+# timm is NOT required — TRACE uses torchvision ConvNeXt_Base_Weights directly.
+# imagededup may require: pip install Cython before install on some systems.
+# For HPC without internet: pre-download MedGemma and use --medgemma_local flag.
