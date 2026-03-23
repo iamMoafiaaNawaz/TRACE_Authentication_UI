@@ -1,0 +1,618 @@
+ConvNeXt Training Log | Started: 2026-03-22 03:48:41
+================================================================================
+================================================================================
+ConvNeXt-Base Skin Cancer - TRACE Production
+  device=cuda  GPUs=4
+  image_size=512  batch=8
+  epochs=60  warmup=5  patience=12
+  lr: head=0.0002  stage7=2e-05  rest=5e-06
+  dropout=0.4  label_smooth=0.1
+  mixup=0.3  grad_clip=1.0  wd=0.0001
+  data_root=/home/f223085/ExperiemntNo2/dataset_split
+================================================================================
+[data] Train: 30146  Val: 6460  Test: 6460
+[data] Classes (4): ['BCC', 'BKL', 'MEL', 'NV']
+[data] Val folder used: /home/f223085/ExperiemntNo2/dataset_split/validation
+[leakage_check] Verifying zero file overlap across splits...
+[leakage_check] PASSED - train/val/test are fully disjoint (30146 / 6460 / 6460 unique files).
+[leakage_check] class_to_idx consistent across all splits.
+[data] Class counts: {'BCC': 8400, 'BKL': 3354, 'MEL': 7892, 'NV': 10500}
+[data] Class weights: {'BCC': 0.897, 'BKL': 2.247, 'MEL': 0.955, 'NV': 0.718}
+[model] Using DataParallel across 4 GPUs
+[model] Backbone FROZEN for 5 warmup epochs.
+[model] Trainable (head only): 528,900
+--------------------------------------------------------------------------------
+[train] Starting training loop...
+--------------------------------------------------------------------------------
+
+  EPOCH   1/60  |  LR=4.00e-05
+------------------------------------------------------------
+  TRAIN | loss=1.14990  acc=0.56409  bal=0.50281  F1=0.50276
+  VAL   | loss=0.98996  acc=0.71502  bal=0.63994  F1=0.64085  MCC=0.6050  kappa=0.6002  AUC=0.8869
+  GAP   | acc=-0.1509  f1=-0.1381  [?? UNDERFIT]
+  ** NEW BEST  val_macro_F1=0.64085  -> checkpoint saved
+  Elapsed: 17.8m  ETA: 1047.3m
+
+  EPOCH   2/60  |  LR=8.00e-05
+------------------------------------------------------------
+  TRAIN | loss=1.09270  acc=0.57935  bal=0.53072  F1=0.52870
+  VAL   | loss=0.97515  acc=0.71873  bal=0.67105  F1=0.66577  MCC=0.6155  kappa=0.6115  AUC=0.8983
+  GAP   | acc=-0.1394  f1=-0.1371  [?? UNDERFIT]
+  ** NEW BEST  val_macro_F1=0.66577  -> checkpoint saved
+  Elapsed: 35.4m  ETA: 1027.7m
+
+  EPOCH   3/60  |  LR=1.20e-04
+------------------------------------------------------------
+  TRAIN | loss=1.07559  acc=0.59053  bal=0.54479  F1=0.54202
+  VAL   | loss=0.93229  acc=0.73638  bal=0.69694  F1=0.69064  MCC=0.6379  kappa=0.6370  AUC=0.9068
+  GAP   | acc=-0.1458  f1=-0.1486  [?? UNDERFIT]
+  ** NEW BEST  val_macro_F1=0.69064  -> checkpoint saved
+  Elapsed: 53.2m  ETA: 1010.3m
+
+  EPOCH   4/60  |  LR=1.60e-04
+------------------------------------------------------------
+  TRAIN | loss=1.06525  acc=0.59461  bal=0.54779  F1=0.54497
+  VAL   | loss=0.93350  acc=0.73266  bal=0.69532  F1=0.68887  MCC=0.6359  kappa=0.6336  AUC=0.9139
+  GAP   | acc=-0.1381  f1=-0.1439  [?? UNDERFIT]
+  EarlyStop counter: 1/12
+  Elapsed: 70.7m  ETA: 989.9m
+
+  EPOCH   5/60  |  LR=2.00e-04
+------------------------------------------------------------
+  TRAIN | loss=1.04907  acc=0.60430  bal=0.56091  F1=0.55713
+  VAL   | loss=0.88561  acc=0.76548  bal=0.70515  F1=0.70519  MCC=0.6765  kappa=0.6726  AUC=0.9211
+  GAP   | acc=-0.1612  f1=-0.1481  [?? UNDERFIT]
+  ** NEW BEST  val_macro_F1=0.70519  -> checkpoint saved
+  Elapsed: 88.4m  ETA: 972.9m
+
+[train] Ep 6: BACKBONE UNFROZEN - head=0.0002  s7=2e-05  rest=5e-06
+[train] Total trainable: 88,093,316
+
+  EPOCH   6/60  |  LR=2.00e-04
+------------------------------------------------------------
+  TRAIN | loss=0.96587  acc=0.64408  bal=0.60642  F1=0.60097
+  VAL   | loss=0.79607  acc=0.82276  bal=0.77744  F1=0.77799  MCC=0.7538  kappa=0.7533  AUC=0.9500
+  GAP   | acc=-0.1787  f1=-0.1770  [?? UNDERFIT]
+  ** NEW BEST  val_macro_F1=0.77799  -> checkpoint saved
+  Elapsed: 115.8m  ETA: 1042.4m
+
+  EPOCH   7/60  |  LR=2.00e-04
+------------------------------------------------------------
+  TRAIN | loss=0.89666  acc=0.68053  bal=0.64543  F1=0.64180
+  VAL   | loss=0.76201  acc=0.82817  bal=0.80713  F1=0.79541  MCC=0.7647  kappa=0.7636  AUC=0.9572
+  GAP   | acc=-0.1476  f1=-0.1536  [OK]
+  ** NEW BEST  val_macro_F1=0.79541  -> checkpoint saved
+  Elapsed: 142.9m  ETA: 1082.3m
+
+  EPOCH   8/60  |  LR=1.99e-04
+------------------------------------------------------------
+  TRAIN | loss=0.85102  acc=0.70253  bal=0.67008  F1=0.66607
+  VAL   | loss=0.73382  acc=0.85310  bal=0.80976  F1=0.81786  MCC=0.7965  kappa=0.7952  AUC=0.9627
+  GAP   | acc=-0.1506  f1=-0.1518  [OK]
+  ** NEW BEST  val_macro_F1=0.81786  -> checkpoint saved
+  Elapsed: 170.3m  ETA: 1107.0m
+
+  EPOCH   9/60  |  LR=1.99e-04
+------------------------------------------------------------
+  TRAIN | loss=0.82511  acc=0.71497  bal=0.68480  F1=0.68189
+  VAL   | loss=0.71831  acc=0.86146  bal=0.82080  F1=0.83011  MCC=0.8087  kappa=0.8069  AUC=0.9664
+  GAP   | acc=-0.1465  f1=-0.1482  [OK]
+  ** NEW BEST  val_macro_F1=0.83011  -> checkpoint saved
+  Elapsed: 197.4m  ETA: 1118.3m
+
+  EPOCH  10/60  |  LR=1.97e-04
+------------------------------------------------------------
+  TRAIN | loss=0.80396  acc=0.72446  bal=0.69635  F1=0.69302
+  VAL   | loss=0.71628  acc=0.86022  bal=0.82032  F1=0.82918  MCC=0.8078  kappa=0.8054  AUC=0.9655
+  GAP   | acc=-0.1358  f1=-0.1362  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 224.1m  ETA: 1120.3m
+
+  EPOCH  11/60  |  LR=1.96e-04
+------------------------------------------------------------
+  TRAIN | loss=0.79014  acc=0.73610  bal=0.70822  F1=0.70556
+  VAL   | loss=0.70274  acc=0.86873  bal=0.84184  F1=0.84235  MCC=0.8184  kappa=0.8179  AUC=0.9697
+  GAP   | acc=-0.1326  f1=-0.1368  [OK]
+  ** NEW BEST  val_macro_F1=0.84235  -> checkpoint saved
+  Elapsed: 251.4m  ETA: 1120.0m
+
+  EPOCH  12/60  |  LR=1.94e-04
+------------------------------------------------------------
+  TRAIN | loss=0.77155  acc=0.74035  bal=0.71419  F1=0.71157
+  VAL   | loss=0.68762  acc=0.87709  bal=0.84574  F1=0.84955  MCC=0.8293  kappa=0.8289  AUC=0.9699
+  GAP   | acc=-0.1367  f1=-0.1380  [OK]
+  ** NEW BEST  val_macro_F1=0.84955  -> checkpoint saved
+  Elapsed: 278.8m  ETA: 1115.2m
+
+  EPOCH  13/60  |  LR=1.92e-04
+------------------------------------------------------------
+  TRAIN | loss=0.76529  acc=0.73998  bal=0.71476  F1=0.71213
+  VAL   | loss=0.68261  acc=0.88096  bal=0.84810  F1=0.85413  MCC=0.8355  kappa=0.8345  AUC=0.9714
+  GAP   | acc=-0.1410  f1=-0.1420  [OK]
+  ** NEW BEST  val_macro_F1=0.85413  -> checkpoint saved
+  Elapsed: 306.2m  ETA: 1107.0m
+
+  EPOCH  14/60  |  LR=1.90e-04
+------------------------------------------------------------
+  TRAIN | loss=0.74632  acc=0.75017  bal=0.72587  F1=0.72382
+  VAL   | loss=0.68225  acc=0.88622  bal=0.85329  F1=0.86155  MCC=0.8429  kappa=0.8416  AUC=0.9694
+  GAP   | acc=-0.1361  f1=-0.1377  [OK]
+  ** NEW BEST  val_macro_F1=0.86155  -> checkpoint saved
+  Elapsed: 333.3m  ETA: 1095.2m
+
+  EPOCH  15/60  |  LR=1.87e-04
+------------------------------------------------------------
+  TRAIN | loss=0.74212  acc=0.75650  bal=0.73145  F1=0.72968
+  VAL   | loss=0.66535  acc=0.89350  bal=0.86480  F1=0.87079  MCC=0.8522  kappa=0.8518  AUC=0.9756
+  GAP   | acc=-0.1370  f1=-0.1411  [OK]
+  ** NEW BEST  val_macro_F1=0.87079  -> checkpoint saved
+  Elapsed: 360.7m  ETA: 1082.0m
+
+  EPOCH  16/60  |  LR=1.84e-04
+------------------------------------------------------------
+  TRAIN | loss=0.72619  acc=0.76778  bal=0.74599  F1=0.74414
+  VAL   | loss=0.65695  acc=0.89644  bal=0.86342  F1=0.87220  MCC=0.8561  kappa=0.8556  AUC=0.9761
+  GAP   | acc=-0.1287  f1=-0.1281  [OK]
+  ** NEW BEST  val_macro_F1=0.87220  -> checkpoint saved
+  Elapsed: 388.1m  ETA: 1067.3m
+
+  EPOCH  17/60  |  LR=1.81e-04
+------------------------------------------------------------
+  TRAIN | loss=0.72165  acc=0.76171  bal=0.73976  F1=0.73792
+  VAL   | loss=0.67184  acc=0.89427  bal=0.86533  F1=0.86980  MCC=0.8535  kappa=0.8530  AUC=0.9686
+  GAP   | acc=-0.1326  f1=-0.1319  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 415.0m  ETA: 1049.6m
+
+  EPOCH  18/60  |  LR=1.77e-04
+------------------------------------------------------------
+  TRAIN | loss=0.71455  acc=0.76254  bal=0.74035  F1=0.73883
+  VAL   | loss=0.68134  acc=0.88622  bal=0.84620  F1=0.85791  MCC=0.8432  kappa=0.8413  AUC=0.9688
+  GAP   | acc=-0.1237  f1=-0.1191  [OK]
+  EarlyStop counter: 2/12
+  Elapsed: 441.8m  ETA: 1031.0m
+
+  EPOCH  19/60  |  LR=1.74e-04
+------------------------------------------------------------
+  TRAIN | loss=0.71199  acc=0.76898  bal=0.74786  F1=0.74691
+  VAL   | loss=0.65873  acc=0.90217  bal=0.87046  F1=0.87832  MCC=0.8646  kappa=0.8638  AUC=0.9718
+  GAP   | acc=-0.1332  f1=-0.1314  [OK]
+  ** NEW BEST  val_macro_F1=0.87832  -> checkpoint saved
+  Elapsed: 469.1m  ETA: 1012.3m
+
+  EPOCH  20/60  |  LR=1.70e-04
+------------------------------------------------------------
+  TRAIN | loss=0.70064  acc=0.77332  bal=0.75193  F1=0.75125
+  VAL   | loss=0.65499  acc=0.90418  bal=0.87725  F1=0.88124  MCC=0.8669  kappa=0.8667  AUC=0.9728
+  GAP   | acc=-0.1309  f1=-0.1300  [OK]
+  ** NEW BEST  val_macro_F1=0.88124  -> checkpoint saved
+  Elapsed: 496.5m  ETA: 993.1m
+
+  EPOCH  21/60  |  LR=1.66e-04
+------------------------------------------------------------
+  TRAIN | loss=0.68925  acc=0.77107  bal=0.75058  F1=0.75023
+  VAL   | loss=0.66649  acc=0.90402  bal=0.87621  F1=0.88119  MCC=0.8668  kappa=0.8665  AUC=0.9696
+  GAP   | acc=-0.1330  f1=-0.1310  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 523.4m  ETA: 972.0m
+
+  EPOCH  22/60  |  LR=1.61e-04
+------------------------------------------------------------
+  TRAIN | loss=0.68422  acc=0.77992  bal=0.75966  F1=0.75911
+  VAL   | loss=0.65950  acc=0.90108  bal=0.87446  F1=0.88034  MCC=0.8632  kappa=0.8624  AUC=0.9729
+  GAP   | acc=-0.1212  f1=-0.1212  [OK]
+  EarlyStop counter: 2/12
+  Elapsed: 550.2m  ETA: 950.4m
+
+  EPOCH  23/60  |  LR=1.56e-04
+------------------------------------------------------------
+  TRAIN | loss=0.67894  acc=0.76934  bal=0.75057  F1=0.74928
+  VAL   | loss=0.64987  acc=0.90372  bal=0.87524  F1=0.88154  MCC=0.8667  kappa=0.8660  AUC=0.9713
+  GAP   | acc=-0.1344  f1=-0.1323  [OK]
+  ** NEW BEST  val_macro_F1=0.88154  -> checkpoint saved
+  Elapsed: 577.6m  ETA: 929.1m
+
+  EPOCH  24/60  |  LR=1.52e-04
+------------------------------------------------------------
+  TRAIN | loss=0.68081  acc=0.77889  bal=0.75982  F1=0.75888
+  VAL   | loss=0.64780  acc=0.90464  bal=0.87505  F1=0.88317  MCC=0.8683  kappa=0.8673  AUC=0.9758
+  GAP   | acc=-0.1257  f1=-0.1243  [OK]
+  ** NEW BEST  val_macro_F1=0.88317  -> checkpoint saved
+  Elapsed: 604.9m  ETA: 907.4m
+
+  EPOCH  25/60  |  LR=1.47e-04
+------------------------------------------------------------
+  TRAIN | loss=0.67250  acc=0.78258  bal=0.76439  F1=0.76344
+  VAL   | loss=0.64816  acc=0.91006  bal=0.88619  F1=0.88968  MCC=0.8750  kappa=0.8749  AUC=0.9682
+  GAP   | acc=-0.1275  f1=-0.1262  [OK]
+  ** NEW BEST  val_macro_F1=0.88968  -> checkpoint saved
+  Elapsed: 632.2m  ETA: 885.1m
+
+  EPOCH  26/60  |  LR=1.42e-04
+------------------------------------------------------------
+  TRAIN | loss=0.66366  acc=0.78825  bal=0.76996  F1=0.76953
+  VAL   | loss=0.64563  acc=0.91037  bal=0.88248  F1=0.88980  MCC=0.8754  kappa=0.8752  AUC=0.9732
+  GAP   | acc=-0.1221  f1=-0.1203  [OK]
+  ** NEW BEST  val_macro_F1=0.88980  -> checkpoint saved
+  Elapsed: 659.6m  ETA: 862.5m
+
+  EPOCH  27/60  |  LR=1.36e-04
+------------------------------------------------------------
+  TRAIN | loss=0.66057  acc=0.78818  bal=0.76864  F1=0.76839
+  VAL   | loss=0.65751  acc=0.90728  bal=0.88575  F1=0.88604  MCC=0.8713  kappa=0.8713  AUC=0.9682
+  GAP   | acc=-0.1191  f1=-0.1176  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 686.4m  ETA: 839.0m
+
+  EPOCH  28/60  |  LR=1.31e-04
+------------------------------------------------------------
+  TRAIN | loss=0.65610  acc=0.79001  bal=0.77122  F1=0.77102
+  VAL   | loss=0.64468  acc=0.91347  bal=0.88795  F1=0.89408  MCC=0.8796  kappa=0.8795  AUC=0.9712
+  GAP   | acc=-0.1235  f1=-0.1231  [OK]
+  ** NEW BEST  val_macro_F1=0.89408  -> checkpoint saved
+  Elapsed: 713.8m  ETA: 815.8m
+
+  EPOCH  29/60  |  LR=1.25e-04
+------------------------------------------------------------
+  TRAIN | loss=0.65707  acc=0.79004  bal=0.77070  F1=0.77029
+  VAL   | loss=0.65517  acc=0.90820  bal=0.87960  F1=0.88752  MCC=0.8729  kappa=0.8722  AUC=0.9681
+  GAP   | acc=-0.1182  f1=-0.1172  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 740.6m  ETA: 791.7m
+
+  EPOCH  30/60  |  LR=1.20e-04
+------------------------------------------------------------
+  TRAIN | loss=0.65072  acc=0.78732  bal=0.77026  F1=0.76984
+  VAL   | loss=0.64454  acc=0.91316  bal=0.88586  F1=0.89324  MCC=0.8795  kappa=0.8791  AUC=0.9729
+  GAP   | acc=-0.1258  f1=-0.1234  [OK]
+  EarlyStop counter: 2/12
+  Elapsed: 767.5m  ETA: 767.5m
+
+  EPOCH  31/60  |  LR=1.14e-04
+------------------------------------------------------------
+  TRAIN | loss=0.65100  acc=0.78812  bal=0.77238  F1=0.77123
+  VAL   | loss=0.65478  acc=0.91099  bal=0.88269  F1=0.89100  MCC=0.8770  kappa=0.8761  AUC=0.9682
+  GAP   | acc=-0.1229  f1=-0.1198  [OK]
+  EarlyStop counter: 3/12
+  Elapsed: 794.0m  ETA: 742.8m
+
+  EPOCH  32/60  |  LR=1.09e-04
+------------------------------------------------------------
+  TRAIN | loss=0.64229  acc=0.79203  bal=0.77555  F1=0.77533
+  VAL   | loss=0.64170  acc=0.91238  bal=0.88725  F1=0.89258  MCC=0.8787  kappa=0.8782  AUC=0.9699
+  GAP   | acc=-0.1204  f1=-0.1172  [OK]
+  EarlyStop counter: 4/12
+  Elapsed: 820.6m  ETA: 718.0m
+
+  EPOCH  33/60  |  LR=1.03e-04
+------------------------------------------------------------
+  TRAIN | loss=0.64656  acc=0.78779  bal=0.77130  F1=0.77016
+  VAL   | loss=0.64307  acc=0.91331  bal=0.88714  F1=0.89447  MCC=0.8801  kappa=0.8794  AUC=0.9699
+  GAP   | acc=-0.1255  f1=-0.1243  [OK]
+  ** NEW BEST  val_macro_F1=0.89447  -> checkpoint saved
+  Elapsed: 847.8m  ETA: 693.7m
+
+  EPOCH  34/60  |  LR=9.72e-05
+------------------------------------------------------------
+  TRAIN | loss=0.63894  acc=0.79618  bal=0.78013  F1=0.77951
+  VAL   | loss=0.64215  acc=0.91471  bal=0.89152  F1=0.89621  MCC=0.8817  kappa=0.8814  AUC=0.9680
+  GAP   | acc=-0.1185  f1=-0.1167  [OK]
+  ** NEW BEST  val_macro_F1=0.89621  -> checkpoint saved
+  Elapsed: 875.2m  ETA: 669.2m
+
+  EPOCH  35/60  |  LR=9.15e-05
+------------------------------------------------------------
+  TRAIN | loss=0.63600  acc=0.79014  bal=0.77479  F1=0.77433
+  VAL   | loss=0.64175  acc=0.91594  bal=0.89147  F1=0.89644  MCC=0.8831  kappa=0.8830  AUC=0.9697
+  GAP   | acc=-0.1258  f1=-0.1221  [OK]
+  ** NEW BEST  val_macro_F1=0.89644  -> checkpoint saved
+  Elapsed: 902.5m  ETA: 644.6m
+
+  EPOCH  36/60  |  LR=8.58e-05
+------------------------------------------------------------
+  TRAIN | loss=0.63573  acc=0.80484  bal=0.78794  F1=0.78780
+  VAL   | loss=0.64409  acc=0.91935  bal=0.89529  F1=0.90077  MCC=0.8879  kappa=0.8878  AUC=0.9677
+  GAP   | acc=-0.1145  f1=-0.1130  [OK]
+  ** NEW BEST  val_macro_F1=0.90077  -> checkpoint saved
+  Elapsed: 929.8m  ETA: 619.9m
+
+  EPOCH  37/60  |  LR=8.02e-05
+------------------------------------------------------------
+  TRAIN | loss=0.62938  acc=0.80215  bal=0.78550  F1=0.78557
+  VAL   | loss=0.64215  acc=0.91780  bal=0.89201  F1=0.89915  MCC=0.8859  kappa=0.8855  AUC=0.9649
+  GAP   | acc=-0.1157  f1=-0.1136  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 956.7m  ETA: 594.7m
+
+  EPOCH  38/60  |  LR=7.46e-05
+------------------------------------------------------------
+  TRAIN | loss=0.62307  acc=0.80533  bal=0.78950  F1=0.78902
+  VAL   | loss=0.64177  acc=0.91935  bal=0.89461  F1=0.90081  MCC=0.8880  kappa=0.8877  AUC=0.9662
+  GAP   | acc=-0.1140  f1=-0.1118  [OK]
+  ** NEW BEST  val_macro_F1=0.90081  -> checkpoint saved
+  Elapsed: 983.9m  ETA: 569.6m
+
+  EPOCH  39/60  |  LR=6.92e-05
+------------------------------------------------------------
+  TRAIN | loss=0.62342  acc=0.79940  bal=0.78414  F1=0.78354
+  VAL   | loss=0.64446  acc=0.91579  bal=0.88841  F1=0.89550  MCC=0.8830  kappa=0.8827  AUC=0.9649
+  GAP   | acc=-0.1164  f1=-0.1120  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 1010.6m  ETA: 544.2m
+
+  EPOCH  40/60  |  LR=6.38e-05
+------------------------------------------------------------
+  TRAIN | loss=0.62423  acc=0.79996  bal=0.78528  F1=0.78459
+  VAL   | loss=0.63962  acc=0.92090  bal=0.89425  F1=0.90092  MCC=0.8900  kappa=0.8898  AUC=0.9648
+  GAP   | acc=-0.1209  f1=-0.1163  [OK]
+  ** NEW BEST  val_macro_F1=0.90092  -> checkpoint saved
+  Elapsed: 1038.0m  ETA: 519.0m
+
+  EPOCH  41/60  |  LR=5.85e-05
+------------------------------------------------------------
+  TRAIN | loss=0.62454  acc=0.79664  bal=0.77919  F1=0.77886
+  VAL   | loss=0.63896  acc=0.91873  bal=0.89241  F1=0.89929  MCC=0.8871  kappa=0.8868  AUC=0.9659
+  GAP   | acc=-0.1221  f1=-0.1204  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 1064.6m  ETA: 493.3m
+
+  EPOCH  42/60  |  LR=5.34e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61630  acc=0.80696  bal=0.79097  F1=0.79042
+  VAL   | loss=0.64609  acc=0.91625  bal=0.89120  F1=0.89780  MCC=0.8840  kappa=0.8835  AUC=0.9634
+  GAP   | acc=-0.1093  f1=-0.1074  [OK]
+  EarlyStop counter: 2/12
+  Elapsed: 1091.4m  ETA: 467.7m
+
+  EPOCH  43/60  |  LR=4.84e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61337  acc=0.80699  bal=0.79189  F1=0.79166
+  VAL   | loss=0.64473  acc=0.91858  bal=0.89224  F1=0.89925  MCC=0.8870  kappa=0.8866  AUC=0.9627
+  GAP   | acc=-0.1116  f1=-0.1076  [OK]
+  EarlyStop counter: 3/12
+  Elapsed: 1118.3m  ETA: 442.1m
+
+  EPOCH  44/60  |  LR=4.36e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61955  acc=0.80155  bal=0.78624  F1=0.78585
+  VAL   | loss=0.64599  acc=0.91920  bal=0.89277  F1=0.90030  MCC=0.8878  kappa=0.8875  AUC=0.9625
+  GAP   | acc=-0.1176  f1=-0.1145  [OK]
+  EarlyStop counter: 4/12
+  Elapsed: 1145.2m  ETA: 416.4m
+
+  EPOCH  45/60  |  LR=3.90e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61364  acc=0.80348  bal=0.78867  F1=0.78878
+  VAL   | loss=0.65051  acc=0.91734  bal=0.89172  F1=0.89908  MCC=0.8854  kappa=0.8849  AUC=0.9619
+  GAP   | acc=-0.1139  f1=-0.1103  [OK]
+  EarlyStop counter: 5/12
+  Elapsed: 1172.1m  ETA: 390.7m
+
+  EPOCH  46/60  |  LR=3.46e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61820  acc=0.79684  bal=0.78193  F1=0.78154
+  VAL   | loss=0.64166  acc=0.91935  bal=0.89443  F1=0.90050  MCC=0.8881  kappa=0.8878  AUC=0.9635
+  GAP   | acc=-0.1225  f1=-0.1190  [OK]
+  EarlyStop counter: 6/12
+  Elapsed: 1198.9m  ETA: 364.9m
+
+  EPOCH  47/60  |  LR=3.04e-05
+------------------------------------------------------------
+  TRAIN | loss=0.60475  acc=0.81980  bal=0.80752  F1=0.80733
+  VAL   | loss=0.64146  acc=0.91827  bal=0.89095  F1=0.89828  MCC=0.8866  kappa=0.8862  AUC=0.9652
+  GAP   | acc=-0.0985  f1=-0.0910  [OK]
+  EarlyStop counter: 7/12
+  Elapsed: 1225.8m  ETA: 339.0m
+
+  EPOCH  48/60  |  LR=2.64e-05
+------------------------------------------------------------
+  TRAIN | loss=0.60983  acc=0.81170  bal=0.79882  F1=0.79822
+  VAL   | loss=0.63736  acc=0.92059  bal=0.89641  F1=0.90193  MCC=0.8897  kappa=0.8895  AUC=0.9672
+  GAP   | acc=-0.1089  f1=-0.1037  [OK]
+  ** NEW BEST  val_macro_F1=0.90193  -> checkpoint saved
+  Elapsed: 1253.2m  ETA: 313.3m
+
+  EPOCH  49/60  |  LR=2.27e-05
+------------------------------------------------------------
+  TRAIN | loss=0.60596  acc=0.80888  bal=0.79428  F1=0.79413
+  VAL   | loss=0.64678  acc=0.91920  bal=0.89667  F1=0.90129  MCC=0.8879  kappa=0.8876  AUC=0.9628
+  GAP   | acc=-0.1103  f1=-0.1072  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 1280.0m  ETA: 287.3m
+
+  EPOCH  50/60  |  LR=1.92e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61591  acc=0.79800  bal=0.78256  F1=0.78205
+  VAL   | loss=0.64238  acc=0.92059  bal=0.89663  F1=0.90249  MCC=0.8897  kappa=0.8895  AUC=0.9634
+  GAP   | acc=-0.1226  f1=-0.1204  [OK]
+  ** NEW BEST  val_macro_F1=0.90249  -> checkpoint saved
+  Elapsed: 1307.4m  ETA: 261.5m
+
+  EPOCH  51/60  |  LR=1.60e-05
+------------------------------------------------------------
+  TRAIN | loss=0.60900  acc=0.80447  bal=0.78835  F1=0.78854
+  VAL   | loss=0.64457  acc=0.91920  bal=0.89255  F1=0.89988  MCC=0.8880  kappa=0.8875  AUC=0.9625
+  GAP   | acc=-0.1147  f1=-0.1113  [OK]
+  EarlyStop counter: 1/12
+  Elapsed: 1334.2m  ETA: 235.5m
+
+  EPOCH  52/60  |  LR=1.30e-05
+------------------------------------------------------------
+  TRAIN | loss=0.61078  acc=0.80573  bal=0.79241  F1=0.79164
+  VAL   | loss=0.64208  acc=0.91889  bal=0.89249  F1=0.89937  MCC=0.8874  kappa=0.8871  AUC=0.9620
+  GAP   | acc=-0.1132  f1=-0.1077  [OK]
+  EarlyStop counter: 2/12
+  Elapsed: 1360.9m  ETA: 209.4m
+
+  EPOCH  53/60  |  LR=1.04e-05
+------------------------------------------------------------
+  TRAIN | loss=0.60309  acc=0.81167  bal=0.79861  F1=0.79803
+  VAL   | loss=0.64130  acc=0.91920  bal=0.89326  F1=0.89970  MCC=0.8878  kappa=0.8875  AUC=0.9629
+  GAP   | acc=-0.1075  f1=-0.1017  [OK]
+  EarlyStop counter: 3/12
+  Elapsed: 1387.7m  ETA: 183.3m
+
+  EPOCH  54/60  |  LR=7.98e-06
+------------------------------------------------------------
+  TRAIN | loss=0.60605  acc=0.80898  bal=0.79278  F1=0.79297
+  VAL   | loss=0.64146  acc=0.91920  bal=0.89371  F1=0.90005  MCC=0.8878  kappa=0.8875  AUC=0.9629
+  GAP   | acc=-0.1102  f1=-0.1071  [OK]
+  EarlyStop counter: 4/12
+  Elapsed: 1414.5m  ETA: 157.2m
+
+  EPOCH  55/60  |  LR=5.91e-06
+------------------------------------------------------------
+  TRAIN | loss=0.61090  acc=0.79863  bal=0.78191  F1=0.78142
+  VAL   | loss=0.64146  acc=0.91858  bal=0.89352  F1=0.89962  MCC=0.8869  kappa=0.8867  AUC=0.9630
+  GAP   | acc=-0.1199  f1=-0.1182  [OK]
+  EarlyStop counter: 5/12
+  Elapsed: 1441.0m  ETA: 131.0m
+
+  EPOCH  56/60  |  LR=4.15e-06
+------------------------------------------------------------
+  TRAIN | loss=0.60744  acc=0.80739  bal=0.79267  F1=0.79289
+  VAL   | loss=0.64286  acc=0.91920  bal=0.89390  F1=0.90033  MCC=0.8878  kappa=0.8875  AUC=0.9622
+  GAP   | acc=-0.1118  f1=-0.1074  [OK]
+  EarlyStop counter: 6/12
+  Elapsed: 1467.9m  ETA: 104.8m
+
+  EPOCH  57/60  |  LR=2.70e-06
+------------------------------------------------------------
+  TRAIN | loss=0.60148  acc=0.80895  bal=0.79674  F1=0.79660
+  VAL   | loss=0.64260  acc=0.91827  bal=0.89160  F1=0.89889  MCC=0.8866  kappa=0.8862  AUC=0.9619
+  GAP   | acc=-0.1093  f1=-0.1023  [OK]
+  EarlyStop counter: 7/12
+  Elapsed: 1494.6m  ETA: 78.7m
+
+  EPOCH  58/60  |  LR=1.56e-06
+------------------------------------------------------------
+  TRAIN | loss=0.60438  acc=0.80175  bal=0.78739  F1=0.78743
+  VAL   | loss=0.64170  acc=0.91842  bal=0.89231  F1=0.89905  MCC=0.8867  kappa=0.8864  AUC=0.9623
+  GAP   | acc=-0.1167  f1=-0.1116  [OK]
+  EarlyStop counter: 8/12
+  Elapsed: 1521.3m  ETA: 52.5m
+
+  EPOCH  59/60  |  LR=7.52e-07
+------------------------------------------------------------
+  TRAIN | loss=0.60426  acc=0.80991  bal=0.79596  F1=0.79561
+  VAL   | loss=0.64192  acc=0.91811  bal=0.89087  F1=0.89847  MCC=0.8863  kappa=0.8860  AUC=0.9619
+  GAP   | acc=-0.1082  f1=-0.1029  [OK]
+  EarlyStop counter: 9/12
+  Elapsed: 1548.1m  ETA: 26.2m
+
+  EPOCH  60/60  |  LR=2.63e-07
+------------------------------------------------------------
+  TRAIN | loss=0.60572  acc=0.80268  bal=0.78872  F1=0.78829
+  VAL   | loss=0.64168  acc=0.91904  bal=0.89440  F1=0.90036  MCC=0.8876  kappa=0.8873  AUC=0.9623
+  GAP   | acc=-0.1164  f1=-0.1121  [OK]
+  EarlyStop counter: 10/12
+  Elapsed: 1574.9m  ETA: 0.0m
+
+[train] Training complete. Best epoch=50  val_macro_F1=0.90249
+--------------------------------------------------------------------------------
+[eval] Evaluating best model on all splits...
+  train        | acc=0.98010  bal=0.97385  F1=0.97681  MCC=0.9724  AUC=0.9976  PR-AUC=0.9942
+  validation   | acc=0.92059  bal=0.89663  F1=0.90249  MCC=0.8897  AUC=0.9634  PR-AUC=0.9164
+  test         | acc=0.92740  bal=0.90316  F1=0.90880  MCC=0.8991  AUC=0.9691  PR-AUC=0.9268
+
+[eval] train Classification Report:
+              precision    recall  f1-score   support
+
+         BCC     0.9740    0.9951    0.9845      8400
+         BKL     0.9826    0.9422    0.9619      3354
+         MEL     0.9768    0.9714    0.9741      7892
+          NV     0.9868    0.9868    0.9868     10500
+
+    accuracy                         0.9801     30146
+   macro avg     0.9800    0.9739    0.9768     30146
+weighted avg     0.9801    0.9801    0.9800     30146
+
+
+[eval] validation Classification Report:
+              precision    recall  f1-score   support
+
+         BCC     0.9283    0.9639    0.9458      1800
+         BKL     0.8726    0.7719    0.8192       719
+         MEL     0.8801    0.9072    0.8934      1691
+          NV     0.9598    0.9436    0.9516      2250
+
+    accuracy                         0.9206      6460
+   macro avg     0.9102    0.8966    0.9025      6460
+weighted avg     0.9204    0.9206    0.9200      6460
+
+
+[eval] test Classification Report:
+              precision    recall  f1-score   support
+
+         BCC     0.9275    0.9600    0.9435      1800
+         BKL     0.8731    0.7844    0.8264       719
+         MEL     0.8950    0.9024    0.8987      1691
+          NV     0.9675    0.9658    0.9666      2250
+
+    accuracy                         0.9274      6460
+   macro avg     0.9158    0.9032    0.9088      6460
+weighted avg     0.9269    0.9274    0.9268      6460
+
+--------------------------------------------------------------------------------
+[save] Saving all artifacts...
+  [saved] state dict (.pth):   best_convnext_weights.pth
+  [saved] full model (.pth):   best_convnext_full_model.pth
+  [saved] HDF5 weights (.h5):  best_convnext_weights.h5
+  [saved] pickle (.pkl):       best_convnext_weights.pkl
+  [saved] joblib (.joblib):    best_convnext_weights.joblib
+  [saved] quantised int8
+  [skip]  ONNX failed: Module onnx is not installed!
+--------------------------------------------------------------------------------
+[gradcam] Generating 40 GradCAM++ overlays on test set...
+[gradcam] 40 overlays saved -> convNext/gradcam
+--------------------------------------------------------------------------------
+[xai] Generating structured XAI reports for 40 samples...
+[xai] 40 XAI reports saved -> convNext/gradcam/xai_reports.json
+[xai] Human-readable XAI report -> convNext/gradcam/xai_reports.txt
+--------------------------------------------------------------------------------
+[reports] Generating rule-based clinical reports for 40 samples...
+[reports] 40 rule-based clinical reports saved -> convNext/gradcam/clinical_reports.json
+[reports] Human-readable clinical report -> convNext/gradcam/clinical_reports.txt
+--------------------------------------------------------------------------------
+[medgemma] Skipped (pass --enable_medgemma to activate).
+           Requires: pip install transformers accelerate bitsandbytes
+           Requires: export HF_TOKEN=hf_your_token_here
+--------------------------------------------------------------------------------
+[plots] Generating all plots...
+  [plot] 01_loss_accuracy.png
+  [plot] 02_macro_f1.png
+  [plot] 03_generalisation_gap.png
+  [plot] 04_lr_schedule.png
+  [plot] 05_balanced_accuracy.png
+  [plot] train_cm_counts.png
+  [plot] train_cm_normalised.png
+  [plot] train_roc.png
+  [plot] train_pr_curves.png
+  [plot] train_per_class_metrics.png
+  [plot] train_confidence_dist.png
+  [plot] validation_cm_counts.png
+  [plot] validation_cm_normalised.png
+  [plot] validation_roc.png
+  [plot] validation_pr_curves.png
+  [plot] validation_per_class_metrics.png
+  [plot] validation_confidence_dist.png
+  [plot] test_cm_counts.png
+  [plot] test_cm_normalised.png
+  [plot] test_roc.png
+  [plot] test_pr_curves.png
+  [plot] test_per_class_metrics.png
+  [plot] test_confidence_dist.png
+================================================================================
+FINAL RESULTS
+--------------------------------------------------------------------------------
+  Best epoch: 50  |  Fit status: well-fit
+  Train-Val gap: acc=-0.1164  f1=-0.1121
+
+  train        | acc=0.98010  bal=0.97385  F1=0.97681  AUC=0.9976
+  validation   | acc=0.92059  bal=0.89663  F1=0.90249  AUC=0.9634
+  test         | acc=0.92740  bal=0.90316  F1=0.90880  AUC=0.9691
+--------------------------------------------------------------------------------
+  Output dir: /home/f223085/convNext
+================================================================================
+================================================================================
+Finished: 2026-03-23 06:27:15

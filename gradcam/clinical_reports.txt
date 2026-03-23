@@ -1,0 +1,804 @@
+TRACE ConvNeXt-Base � Rule-Based Clinical Reports
+Generated: 2026-03-23 06:27:10
+================================================================================
+
+SAMPLE 000  |  Pred: BCC  |  True: BCC  |  Conf: 89.4% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.4%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.4%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.5%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (4.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 001  |  Pred: BCC  |  True: BCC  |  Conf: 90.0% (very high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with very high confidence (90.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.2%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central-right region (1.7% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 002  |  Pred: BKL  |  True: BCC  |  Conf: 73.8% (moderate)  |  Risk: Low  |  WRONG
+--------------------------------------------------------------------------------
+  ICD-10     : L82 (Seborrhoeic keratosis)
+  Findings   : TRACE ConvNeXt-Base predicts BKL � Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign. � with moderate confidence (73.8%).
+
+  Morphology : Characterised by a waxy, stuck-on appearance with a rough surface. Colour varies from tan to dark brown. Well-demarcated borders. Multiple lesions common in older adults.
+
+  Differential Diagnosis:
+  BKL (73.8%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  BCC (19.6%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  MEL (3.7%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights lower-left region (2.5% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Reassure patient - benign lesion requiring no treatment unless cosmetically bothersome. Monitor for rapid morphological change. Cryotherapy or curettage available if desired. Annual skin check recommended.
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 003  |  Pred: BCC  |  True: BCC  |  Conf: 88.6% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (88.6%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (88.6%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.6%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.7%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (6.4% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 004  |  Pred: BCC  |  True: BCC  |  Conf: 89.9% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.9%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.9%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.3%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (3.3% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 005  |  Pred: BCC  |  True: BCC  |  Conf: 89.4% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.4%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.4%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.4%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.8% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 006  |  Pred: BCC  |  True: BCC  |  Conf: 88.8% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (88.8%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (88.8%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.6%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.7%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (3.6% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 007  |  Pred: BCC  |  True: BCC  |  Conf: 89.7% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.7%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.7%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.0%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.3%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 008  |  Pred: BCC  |  True: BCC  |  Conf: 78.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (78.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (78.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (17.0%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.8%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 009  |  Pred: BCC  |  True: BCC  |  Conf: 90.0% (very high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with very high confidence (90.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (5.8%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central-right region (2.9% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 010  |  Pred: BCC  |  True: BCC  |  Conf: 89.3% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.3%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.3%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.6% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 011  |  Pred: BCC  |  True: BCC  |  Conf: 89.7% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.7%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.7%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central-left region (9.3% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 012  |  Pred: BCC  |  True: BCC  |  Conf: 90.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (90.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.0%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.6% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 013  |  Pred: BCC  |  True: BCC  |  Conf: 89.6% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.6%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.6%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.0%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights lower-left region (0.6% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 014  |  Pred: BCC  |  True: BCC  |  Conf: 89.9% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.9%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.9%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.0%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (2.9% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 015  |  Pred: BCC  |  True: BCC  |  Conf: 89.1% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.1%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.1%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (2.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 016  |  Pred: BCC  |  True: BCC  |  Conf: 89.8% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.8%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.8%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 017  |  Pred: BCC  |  True: BCC  |  Conf: 89.5% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.5%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.5%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.4%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (3.7% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 018  |  Pred: BCC  |  True: BCC  |  Conf: 89.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.9%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (6.9% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 019  |  Pred: BCC  |  True: BCC  |  Conf: 89.1% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.1%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.1%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.9%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.2%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.1% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 020  |  Pred: BCC  |  True: BCC  |  Conf: 88.8% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (88.8%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (88.8%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.7%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights upper-central region (5.3% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 021  |  Pred: BCC  |  True: BCC  |  Conf: 89.7% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.7%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.7%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 022  |  Pred: BCC  |  True: BCC  |  Conf: 89.5% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.5%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.5%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.2%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights upper-central region (2.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 023  |  Pred: BCC  |  True: BCC  |  Conf: 89.2% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.2%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.2%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (5.6% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 024  |  Pred: BCC  |  True: BCC  |  Conf: 89.1% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.1%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.1%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (6.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 025  |  Pred: BCC  |  True: BCC  |  Conf: 90.1% (very high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with very high confidence (90.1%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.1%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (5.6%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (5.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 026  |  Pred: BCC  |  True: BCC  |  Conf: 89.4% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.4%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.4%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.5% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 027  |  Pred: BCC  |  True: BCC  |  Conf: 88.8% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (88.8%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (88.8%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.5%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.7%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (5.4% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 028  |  Pred: BCC  |  True: BCC  |  Conf: 90.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (90.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.3%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central-left region (8.4% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 029  |  Pred: BCC  |  True: BCC  |  Conf: 86.5% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (86.5%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (86.5%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (5.3%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights upper-right region (4.8% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 030  |  Pred: BCC  |  True: BCC  |  Conf: 89.6% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.6%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.6%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.2%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (2.1% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 031  |  Pred: BCC  |  True: BCC  |  Conf: 89.1% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.1%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.1%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.5%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.6%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (4.1% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 032  |  Pred: BCC  |  True: BCC  |  Conf: 89.8% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.8%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.8%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (5.9%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (2.1% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 033  |  Pred: BCC  |  True: BCC  |  Conf: 90.7% (very high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with very high confidence (90.7%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.7%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (5.4%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.1%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.1% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 034  |  Pred: BCC  |  True: BCC  |  Conf: 90.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (90.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (90.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.1%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.1%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (1.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 035  |  Pred: BCC  |  True: BCC  |  Conf: 88.9% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (88.9%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (88.9%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (7.4%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.4%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights lower-left region (1.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 036  |  Pred: BCC  |  True: BCC  |  Conf: 89.5% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.5%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.5%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (3.3% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 037  |  Pred: BCC  |  True: BCC  |  Conf: 89.3% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.3%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.3%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.3%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights central region (5.7% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 038  |  Pred: BCC  |  True: BCC  |  Conf: 89.0% (high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with high confidence (89.0%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (89.0%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (6.6%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (2.5%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights lower-right region (1.0% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
+SAMPLE 039  |  Pred: BCC  |  True: BCC  |  Conf: 91.4% (very high)  |  Risk: High  |  CORRECT
+--------------------------------------------------------------------------------
+  ICD-10     : C44 (Basal cell carcinoma of skin)
+  Findings   : TRACE ConvNeXt-Base predicts BCC � Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic. � with very high confidence (91.4%).
+
+  Morphology : Typically presents as a pearly or translucent nodule with rolled edges and telangiectasia. May show ulceration in advanced cases. Slow-growing, locally destructive.
+
+  Differential Diagnosis:
+  BCC (91.4%): Basal Cell Carcinoma - most common skin cancer, locally invasive, rarely metastatic.
+  BKL (5.6%): Benign Keratosis-like Lesion - seborrhoeic keratosis or solar lentigo, benign.
+  MEL (1.8%): Melanoma - most dangerous skin cancer, high metastatic potential, urgent referral.
+
+  XAI        : GradCAM++ highlights lower-left region (0.2% pixels >70% activation, peak=1.00). Focused lesion-localised activation � high spatial interpretability confidence.
+
+  Next Step  : Refer to dermatology within 2 weeks for biopsy and excision planning. Surgical excision with 4 mm margins is first-line treatment. Mohs micrographic surgery for high-risk locations (face, ears).
+
+  *** AI research report only. NOT a clinical diagnosis. Must be reviewed and confirmed by a qualified dermatologist. ***
+
+================================================================================
+
