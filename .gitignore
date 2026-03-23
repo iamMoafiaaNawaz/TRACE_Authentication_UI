@@ -214,3 +214,45 @@ __marimo__/
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+
+# =============================================================================
+# TRACE Skin Cancer Detection — project-specific ignores
+# =============================================================================
+
+# Model weights (large binaries — never commit; use .gitkeep sentinels instead)
+weights/**/*.pt
+weights/**/*.pth
+weights/**/*.onnx
+weights/**/*.bin
+weights/**/*.safetensors
+
+# API test artefacts
+api_test_results/
+
+# Loose test images dumped in project root
+ISIC_*.jpg
+ISIC_*.png
+
+# Experiment / run outputs
+runs/
+exp*/
+wandb/
+mlruns/
+outputs/
+checkpoints/
+*.ckpt
+
+# Data directories (never commit raw dataset)
+data/
+datasets/
+
+# HuggingFace model cache
+.cache/huggingface/
+
+# Jupyter notebooks checkpoints (already covered above, belt-and-suspenders)
+.ipynb_checkpoints/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+desktop.ini
