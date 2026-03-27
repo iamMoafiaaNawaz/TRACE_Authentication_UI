@@ -45,3 +45,12 @@ venv*/
 
 # Local uploads/debug artifacts
 uploads/
+
+# Model binaries (keep local or use Git LFS)
+*.h5
+*.pth
+*.pt
+frontend/backend/model/*.h5
+frontend/backend/model/*.pth
+frontend/backend/model/*.pt
+
