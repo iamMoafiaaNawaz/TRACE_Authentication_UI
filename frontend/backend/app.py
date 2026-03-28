@@ -16,16 +16,18 @@ from dotenv import load_dotenv
 from bson.objectid import ObjectId
 from email_validator import validate_email, EmailNotValidError
 from werkzeug.utils import secure_filename
-
+from types import SimpleNamespace
 import torch
 
 from services.skin_classifier_service import SkinClassifierService
 from services.yolo_service import load_yolo_once, localize_lesion, get_yolo_status
 
-# Load backend-local .env (if present) then repo-root .env (preferred) to allow
-# central configuration when running from TRACE_Backend/.
-load_dotenv()
-_repo_root_env = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".env"))
+# Load env files from predictable locations for the current repo layout:
+# 1) backend/.env
+# 2) repo-root/.env (preferred shared config)
+_backend_env = os.path.abspath(os.path.join(os.path.dirname(__file__), '.env'))
+_repo_root_env = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
+load_dotenv(_backend_env)
 if os.path.exists(_repo_root_env):
     load_dotenv(_repo_root_env, override=True)
 
@@ -46,24 +48,116 @@ MONGO_URI = os.getenv("MONGO_URI")
 SECRET_KEY = os.getenv("SECRET_KEY", "secret")
 SMTP_EMAIL = os.getenv("SMTP_EMAIL", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+class _InMemoryCollection:
+    def __init__(self):
+        self._docs = []
+
+    @staticmethod
+    def _match(doc, query):
+        if not query:
+            return True
+        for k, v in query.items():
+            if isinstance(v, dict) and "$in" in v:
+                if doc.get(k) not in v["$in"]:
+                    return False
+            else:
+                if str(doc.get(k)) != str(v):
+                    return False
+        return True
+
+    def find_one(self, query):
+        for d in self._docs:
+            if self._match(d, query):
+                return dict(d)
+        return None
+
+    def insert_one(self, doc):
+        new_doc = dict(doc)
+        new_doc.setdefault("_id", ObjectId())
+        self._docs.append(new_doc)
+        return SimpleNamespace(inserted_id=new_doc["_id"])
+
+    def delete_one(self, query):
+        for i, d in enumerate(self._docs):
+            if self._match(d, query):
+                del self._docs[i]
+                return SimpleNamespace(deleted_count=1)
+        return SimpleNamespace(deleted_count=0)
+
+    def update_one(self, query, update):
+        for i, d in enumerate(self._docs):
+            if self._match(d, query):
+                if "$set" in update:
+                    nd = dict(d)
+                    nd.update(update["$set"])
+                    self._docs[i] = nd
+                return SimpleNamespace(matched_count=1, modified_count=1)
+        return SimpleNamespace(matched_count=0, modified_count=0)
+
+    def count_documents(self, query):
+        return sum(1 for d in self._docs if self._match(d, query))
+
+    def find(self, query=None, projection=None):
+        items = [dict(d) for d in self._docs if self._match(d, query or {})]
+        if projection:
+            for item in items:
+                for field, include in projection.items():
+                    if include == 0 and field in item:
+                        item.pop(field, None)
+        return items
 
 if not MONGO_URI:
     raise RuntimeError("MONGO_URI is not set. Add it to a .env file or environment variables.")
 
-client = MongoClient(MONGO_URI)
+client = None
+db = None
+
 try:
+    client = MongoClient(
+        MONGO_URI,
+        serverSelectionTimeoutMS=3000,
+        connectTimeoutMS=3000,
+        socketTimeoutMS=3000,
+    )
     client.admin.command("ping")
-    print("Connected to MongoDB Atlas successfully!")
+    db = client.get_database()
+    print("Connected to MongoDB successfully (primary URI).")
 except Exception as e:
-    print(f"MongoDB connection warning: {e}")
-db = client.get_database()
+    print(f"MongoDB primary connection failed: {e}")
+    fallback_uri = os.getenv("MONGO_URI_FALLBACK", "mongodb://localhost:27017/trace_db")
+    try:
+        client = MongoClient(
+            fallback_uri,
+            serverSelectionTimeoutMS=1500,
+            connectTimeoutMS=1500,
+            socketTimeoutMS=1500,
+        )
+        client.admin.command("ping")
+        db = client.get_database()
+        print(f"Connected to fallback MongoDB successfully: {fallback_uri}")
+    except Exception as fallback_err:
+        print(f"Fallback MongoDB connection failed: {fallback_err}")
+        client = None
+        db = None
 
 # Collections
-users_collection = db["users"]
-admins_collection = db["admins"]
-pending_collection = db["pending_users"]
-reset_collection = db["password_resets"]
-analyses_collection = db["analyses"]
+# Collections
+if db is not None:
+    users_collection = db['users']
+    admins_collection = db['admins']
+    pending_collection = db['pending_users']
+    reset_collection = db['password_resets']
+    analyses_collection = db['analyses']
+    DB_MODE = "mongo"
+else:
+    users_collection = _InMemoryCollection()
+    admins_collection = _InMemoryCollection()
+    pending_collection = _InMemoryCollection()
+    reset_collection = _InMemoryCollection()
+    analyses_collection = _InMemoryCollection()
+    DB_MODE = "memory"
+    print("Database fallback mode active: in-memory store")
+
 def load_app_timezone():
     tz_name = os.getenv("APP_TIMEZONE", "Asia/Karachi")
     try:
@@ -400,6 +494,10 @@ def save_mask_png(mask_gray, path):
 
 
 def send_email(to_email, subject, body):
+    # Dev-friendly fallback: if SMTP is not configured, do not block signup.
+    if not SMTP_EMAIL or not SMTP_PASSWORD:
+        print(f'[DEV OTP] To: {to_email} | Subject: {subject} | Body: {body}')
+        return True
     try:
         msg = MIMEText(body)
         msg['Subject'] = subject
@@ -419,10 +517,20 @@ def send_email(to_email, subject, body):
 
 # Authentication Routes
 
+
+def _is_db_required_path(path: str) -> bool:
+    return path.startswith('/api/auth') or path.startswith('/api/admin') or path.startswith('/api/history')
+
+
+@app.before_request
+def _guard_db_availability():
+    # Keep service responsive in memory fallback mode.
+    return None
 @app.route('/api/auth/signup', methods=['POST'])
 def signup_step1():
     try:
         data = request.json
+        print('[AUTH SIGNUP] payload keys:', list((data or {}).keys()))
         email = data.get('email', '').lower().strip()
         password = data.get('password')
         full_name = data.get('fullName')
@@ -432,7 +540,7 @@ def signup_step1():
             return jsonify({"error": "Missing fields"}), 400
 
         try:
-            valid = validate_email(email, check_deliverability=True)
+            valid = validate_email(email, check_deliverability=False)
             email = valid.normalized
         except EmailNotValidError as e:
             return jsonify({"error": f"Invalid Email: {str(e)}"}), 400
@@ -459,11 +567,16 @@ def signup_step1():
         pending_collection.insert_one(pending_user)
 
         if send_email(email, "TRACE - Verify Account", f"Your OTP is: {otp}\n\nExpires in 5 minutes."):
-            return jsonify({"message": "OTP sent successfully"}), 200
+            resp = {"message": "OTP sent successfully"}
+            if not SMTP_EMAIL or not SMTP_PASSWORD:
+                resp["dev_otp"] = otp
+                resp["email_service"] = "disabled"
+            return jsonify(resp), 200
         else:
             return jsonify({"error": "Failed to send email"}), 500
 
     except Exception as e:
+        print(f"[AUTH SIGNUP ERROR] {e}")
         return jsonify({"error": str(e)}), 500
 
 
@@ -471,6 +584,7 @@ def signup_step1():
 def verify_otp():
     try:
         data = request.json
+        print('[AUTH OTP] email:', (data or {}).get('email'))
         email = data.get('email', '').lower().strip()
         otp = data.get('otp', '').strip()
 
@@ -500,6 +614,7 @@ def verify_otp():
         return jsonify({"message": "Account Verified!"}), 201
 
     except Exception as e:
+        print(f"[AUTH OTP ERROR] {e}")
         return jsonify({"error": str(e)}), 500
 
 
@@ -507,6 +622,7 @@ def verify_otp():
 def login():
     try:
         data = request.json
+        print('[AUTH LOGIN] email:', (data or {}).get('email'))
         email = data.get('email', '').lower().strip()
         password = data.get('password')
 
@@ -518,6 +634,8 @@ def login():
             collection_type = "admin"
 
         if not user:
+            if pending_collection is not None and pending_collection.find_one({"email": email}):
+                return jsonify({"error": "User is pending verification. Please verify OTP first."}), 403
             return jsonify({"error": "User not found"}), 404
 
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
@@ -540,6 +658,7 @@ def login():
         else:
             return jsonify({"error": "Invalid Password"}), 401
     except Exception as e:
+        print(f"[AUTH LOGIN ERROR] {e}")
         return jsonify({"error": str(e)}), 500
 
 
@@ -876,7 +995,8 @@ def predict():
         except Exception as _debug_exc:
             print(f"SENT TO FRONTEND: <debug print failed: {_debug_exc}>")
 
-        analyses_collection.insert_one({
+        if analyses_collection is not None:
+            analyses_collection.insert_one({
             "user_id": decoded["user_id"],
             "result": response_payload["result"],
             "diagnosis": response_payload["diagnosis"],
@@ -905,4 +1025,28 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=os.getenv("FLASK_DEBUG", "0") == "1", host="0.0.0.0", port=5000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

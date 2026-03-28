@@ -50,7 +50,7 @@ const Login = () => {
       }
 
     } catch (err) {
-      console.error("Login Failed:", err);
+      console.error("Login Failed:", { message: err?.message, status: err?.response?.status, data: err?.response?.data, api: `${API_BASE}/api/auth/login` });
       setError(err.response?.data?.error || "Invalid Credentials or Server Offline");
       setLoading(false);
     }
@@ -168,3 +168,4 @@ const Login = () => {
 };
 
 export default Login;
+

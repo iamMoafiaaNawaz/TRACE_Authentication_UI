@@ -4,29 +4,28 @@ import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, User, Briefcase, Check } from 'lucide-react'
 import PrimaryButton from '../components/PrimaryButton'
 import InputField from '../components/InputField'
-import traceLogo from '../assets/trace-logo.png' 
-import axios from 'axios' 
+import traceLogo from '../assets/trace-logo.png'
+import axios from 'axios'
+import { API_BASE } from '../config/api'
 
 const Signup = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('') 
+  const [error, setError] = useState('')
 
-  // OTP STATE
-  const [step, setStep] = useState('signup') // 'signup' or 'otp'
+  const [step, setStep] = useState('signup')
   const [otp, setOtp] = useState('')
 
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     password: '',
-    role: 'Student', // Default role Student rahega
+    role: 'Student',
   })
 
-  // Logic
   const [validations, setValidations] = useState({ minLength: false, hasNumber: false, hasUpper: false, hasSymbol: false })
-  const [strength, setStrength] = useState(0) 
+  const [strength, setStrength] = useState(0)
 
   useEffect(() => {
     const pwd = formData.password
@@ -37,52 +36,65 @@ const Signup = () => {
       hasSymbol: /[!@#$%^&*(),.?":{}|<>]/.test(pwd),
     }
     setValidations(checks)
-    const score = Object.values(checks).filter(Boolean).length
-    setStrength(score)
+    setStrength(Object.values(checks).filter(Boolean).length)
   }, [formData.password])
 
-  // STEP 1: SEND EMAIL
   const handleSignupSubmit = async (e) => {
     e.preventDefault()
     if (strength < 4) return
     setLoading(true)
     setError('')
 
-    const nameRegex = /^[a-zA-Z\s]+$/;
+    const nameRegex = /^[a-zA-Z\s]+$/
     if (!nameRegex.test(formData.fullName)) {
-      setError("Full Name can only contain letters (A-Z).");
-      setLoading(false);
-      return;
+      setError('Full Name can only contain letters (A-Z).')
+      setLoading(false)
+      return
     }
 
     try {
-      await axios.post(`${API_BASE}/api/auth/signup`, formData);
-      setLoading(false);
-      setStep('otp'); 
-      alert("Verification code sent to your email!");
+      const response = await axios.post(`${API_BASE}/api/auth/signup`, formData)
+      setLoading(false)
+      setStep('otp')
+      const devOtp = response?.data?.dev_otp
+      if (devOtp) {
+        setOtp(String(devOtp))
+        alert(`Verification code (dev mode): ${devOtp}`)
+      } else {
+        alert('Verification code sent to your email!')
+      }
     } catch (err) {
-      setError(err.response?.data?.error || "Registration Failed");
-      setLoading(false);
+      console.error('Signup Failed:', {
+        message: err?.message,
+        status: err?.response?.status,
+        data: err?.response?.data,
+      })
+      setError(err.response?.data?.error || 'Registration Failed')
+      setLoading(false)
     }
   }
 
-  // STEP 2: VERIFY OTP
   const handleOtpSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    e.preventDefault()
+    setLoading(true)
+    setError('')
 
     try {
       await axios.post(`${API_BASE}/api/auth/verify-otp`, {
         email: formData.email,
-        otp: otp
-      });
-      setLoading(false);
-      alert("Account Verified Successfully!");
-      navigate('/login');
+        otp,
+      })
+      setLoading(false)
+      alert('Account Verified Successfully!')
+      navigate('/login')
     } catch (err) {
-      setError(err.response?.data?.error || "Invalid OTP");
-      setLoading(false);
+      console.error('OTP Verify Failed:', {
+        message: err?.message,
+        status: err?.response?.status,
+        data: err?.response?.data,
+      })
+      setError(err.response?.data?.error || 'Invalid OTP')
+      setLoading(false)
     }
   }
 
@@ -91,7 +103,7 @@ const Signup = () => {
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-300/20 rounded-full blur-[100px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-[#1E90FF]/20 rounded-full blur-[100px]" />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative z-10 w-full max-w-md bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl shadow-blue-100 border border-white/60 p-8"
@@ -100,21 +112,15 @@ const Signup = () => {
           <div className="inline-flex justify-center items-center w-14 h-14 bg-white rounded-2xl shadow-sm mb-3 p-2">
             <img src={traceLogo} alt="TRACE" className="w-full h-full object-contain" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-800">
-            {step === 'signup' ? 'Create Account' : 'Verify Email'}
-          </h2>
-          <p className="text-slate-500 text-sm">
-            {step === 'signup' ? 'Join TRACE AI System' : `Code sent to ${formData.email}`}
-          </p>
+          <h2 className="text-2xl font-bold text-slate-800">{step === 'signup' ? 'Create Account' : 'Verify Email'}</h2>
+          <p className="text-slate-500 text-sm">{step === 'signup' ? 'Join TRACE AI System' : `Code sent to ${formData.email}`}</p>
         </div>
 
-        {/* --- FORM SWITCHING LOGIC --- */}
         {step === 'signup' ? (
           <form onSubmit={handleSignupSubmit} className="flex flex-col gap-4">
             <InputField label="Full Name" type="text" placeholder="Dr. Ali Khan" required icon={<User className="w-5 h-5" />} value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} />
-            
             <InputField label="Email Address" type="email" placeholder="doctor@gmail.com" required icon={<Mail className="w-5 h-5" />} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-            
+
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5 ml-1">Role</label>
               <div className="relative">
@@ -122,12 +128,20 @@ const Signup = () => {
                 <select value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="w-full pl-12 pr-10 py-3.5 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E90FF] appearance-none text-slate-700 font-medium cursor-pointer">
                   <option value="Student">Medical Student</option>
                   <option value="Clinician">Clinician / Doctor</option>
-                  {/* ADMIN OPTION REMOVED FOR SECURITY */}
                 </select>
               </div>
             </div>
 
-            <InputField label="Password" type={showPassword ? 'text' : 'password'} placeholder="Strong password" required icon={<Lock className="w-5 h-5" />} value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} rightIcon={<button type="button" onClick={() => setShowPassword(!showPassword)} className="text-slate-400 hover:text-[#1E90FF]">{showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}</button>} />
+            <InputField
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Strong password"
+              required
+              icon={<Lock className="w-5 h-5" />}
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              rightIcon={<button type="button" onClick={() => setShowPassword(!showPassword)} className="text-slate-400 hover:text-[#1E90FF]">{showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}</button>}
+            />
 
             {formData.password && (
               <div className="mt-1 animate-fade-in">
@@ -150,18 +164,17 @@ const Signup = () => {
             </PrimaryButton>
           </form>
         ) : (
-          /* --- OTP FORM --- */
           <form onSubmit={handleOtpSubmit} className="flex flex-col gap-6 animate-fade-in-up">
             <div className="text-center">
-               <input 
-                 type="text" 
-                 placeholder="123456" 
-                 maxLength={6}
-                 className="text-center text-3xl font-bold tracking-widest w-full py-4 rounded-xl border-2 border-slate-200 focus:border-[#1E90FF] outline-none transition-all"
-                 value={otp}
-                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                 required
-               />
+              <input
+                type="text"
+                placeholder="123456"
+                maxLength={6}
+                className="text-center text-3xl font-bold tracking-widest w-full py-4 rounded-xl border-2 border-slate-200 focus:border-[#1E90FF] outline-none transition-all"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                required
+              />
             </div>
 
             {error && <p className="text-sm text-red-600 bg-red-50 p-3 rounded-lg text-center border border-red-100">{error}</p>}
@@ -192,6 +205,6 @@ const RequirementBadge = ({ met, label }) => (
     {met ? <Check size={12} strokeWidth={3} /> : <div className="w-3 h-3 rounded-full bg-slate-200" />}
     {label}
   </div>
-);
+)
 
 export default Signup
